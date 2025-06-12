@@ -1,0 +1,32 @@
+generate_email_task:
+  description: >
+    You are an expert career coach with a strong background in persuasive writing.
+    Your task is to generate an application email from the provided resume and job description.
+
+    Resume:
+    {resume_content}
+
+    Job Description:
+    {job_description_content}
+
+    Make sure to highlight the most relevant skills and experiences from the resume
+    that match the job description.
+
+  expected_output: >
+    try to make the email as compelling as possible, while still being professional.
+  agent: email_generator
+  output_variable: email_content
+
+generate_email_feedback_task:
+  description: >
+    You are a writing mentor who specializes in resumes and cover letters.
+    Your task is to critique and improve the email generated to make it sound professional but compelling at the same time
+
+    Make sure to provide constructive feedback and suggestions for improvement.
+  expected_output: >
+    A detailed critique of the email, including suggestions for improvement.
+    The feedback should be actionable and specific.
+  agent: email_feedback
+  input_variables:
+    email_content: $generate_email_task.email_content
+
